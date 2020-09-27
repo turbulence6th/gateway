@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="202009271717" author="oguz">
+        <createSequence sequenceName="seq_orientation"/>
+        <createTable tableName="orientation">
+            <column name="id" type="bigint" defaultValueSequenceNext="seq_orientation">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="domain" type="varchar(128)"/>
+            <column name="url" type="varchar(128)"/>
+        </createTable>
+
+        <insert tableName="orientation">
+            <column name="domain" value="file-share.otanrikulu.com"/>
+            <column name="url" value="http://localhost:10000"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
