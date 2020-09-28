@@ -30,7 +30,7 @@
     <changeSet id="202009280707" author="oguz">
         <insert tableName="orientation">
             <column name="domain" value="otanrikulu.com"/>
-            <column name="url" value="http://localhost:10001"/>
+            <column name="url" value="http://172.17.0.1:10001"/>
         </insert>
     </changeSet>
 
