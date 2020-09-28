@@ -26,4 +26,12 @@
             <where>id = 1</where>
         </update>
     </changeSet>
+
+    <changeSet id="202009272049" author="oguz">
+        <insert tableName="orientation">
+            <column name="domain" value="otanrikulu.com"/>
+            <column name="url" value="http://localhost:10001"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
