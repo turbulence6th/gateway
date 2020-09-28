@@ -35,3 +35,4 @@ build/
 .mvn
 
 keystore.p12
+cert.pem
