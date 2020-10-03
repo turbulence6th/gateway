@@ -2,8 +2,14 @@ package com.turbulence6th.gateway.config;
 
 import com.turbulence6th.gateway.dao.OrientationDao;
 import com.turbulence6th.gateway.entity.Orientation;
+import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +19,6 @@ import java.util.List;
 
 @Configuration
 public class GatewayDiscoveryConfiguration {
-
-    @Value( "${server.port}" )
-    private Integer port;
 
     @Value( "${turbulence6th.http.port}" )
     private Integer httpPort;
@@ -37,12 +40,11 @@ public class GatewayDiscoveryConfiguration {
     }
 
     @Bean
-    public Connector redirectConnector() {
-        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-        connector.setScheme("http");
+    public ConfigurableServletWebServerFactory webServerFactory() {
+        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setPort(httpPort);
-        connector.setSecure(false);
-        connector.setRedirectPort(port);
-        return connector;
+        factory.addAdditionalTomcatConnectors(connector);
+        return factory;
     }
 }
