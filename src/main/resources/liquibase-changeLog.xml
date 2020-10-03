@@ -48,4 +48,11 @@
         </insert>
     </changeSet>
 
+    <changeSet id="202010031458" author="oguz">
+        <insert tableName="orientation">
+            <column name="domain" value="security.otanrikulu.com"/>
+            <column name="url" value="http://172.17.0.1:10003"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
