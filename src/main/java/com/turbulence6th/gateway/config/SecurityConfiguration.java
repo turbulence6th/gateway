@@ -9,7 +9,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-    @Value("${server.ssl.enabled}")
+    @Value("${server.ssl.enabled:false}")
     private boolean sslEnabled;
 
     @Bean
